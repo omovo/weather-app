@@ -25,8 +25,8 @@ $("#search-button").on("click", function (event) {
 });
 // Function to create Button for searched city 
 function createRecentSearchBtn(q) {
-    let newLi = $("<li>")
-    let newBtn = $('<button>');
+    constnewLi = $("<li>")
+    const newBtn = $('<button>');
     //Adding Extra ID for Button to stop Creating Duplicate Button on Click
     newBtn.attr('id', 'extraBtn');
     newBtn.addClass("button is-small recentSearch");
@@ -99,7 +99,7 @@ function displayForecast(c) {
         method: "GET",
     }).then(function (response) {
         //  Parse response to display forecast for next 5 days underneath current conditions
-        let arrayList = response.list;
+        const arrayList = response.list;
         for (let i = 0; i < arrayList.length; i++) {
             if (arrayList[i].dt_txt.split(' ')[1] === '12:00:00') {
                 console.log(arrayList[i]);
@@ -108,7 +108,7 @@ function displayForecast(c) {
                 cityMain.addClass('col forecast bg-primary text-white ml-3 mb-3 rounded>');
                 let date5 = $("<h5>").text(response.list[i].dt_txt.split(" ")[0]);
                 let image = $('<img>').attr('src', 'http://openweathermap.org/img/w/' + arrayList[i].weather[0].icon + '.png');
-                const degreeMain = $('<p>').text('Temp : ' + arrayList[i].main.temp + ' °F ('+ celcius + '°C)');               
+                let degreeMain = $('<p>').text('Temp : ' + arrayList[i].main.temp + ' °F ('+ celcius + '°C)');               
                 let humidityMain = $('<p>').text('Humidity : ' + arrayList[i].main.humidity + '%');
                 let windMain = $('<p>').text('Wind Speed : ' + arrayList[i].wind.speed + 'MPH');                
                 cityMain.append(date5).append(image).append(degreeMain).append(humidityMain).append(windMain);
@@ -138,7 +138,7 @@ function checkLocalStorage() {
     } else {
         storedData.trim();
         dataArray = storedData.split(',');
-        for (var i = 0; i < dataArray.length; i++) {
+        for (let i = 0; i < dataArray.length; i++) {
             createRecentSearchBtn(dataArray[i]);
         }
     }
